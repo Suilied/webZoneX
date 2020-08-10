@@ -3,7 +3,7 @@ let router = express.Router();
 const fs = require('fs');
 const os = require('os');
 
-const rootFolderPath = os.type() === 'Linux' ? '/home/azmo/projects/webZone' : 'E:\\chielFiles\\webZone';
+const rootFolderPath = process.cwd(); //os.type() === 'Linux' ? '/home/azmo/projects/webZoneX' : 'E:\\chielFiles\\webZone';
 const slash = os.type() === 'Linux' ? '/' : '\\';
 
 router.post('/folder', function(req, res, next) {
