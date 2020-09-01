@@ -14,6 +14,10 @@ router.get('/rotide', function(req, res, next){
 	res.render('rotide', { title: 'Rotide code editor' });
 });
 
+router.get('/impulse', function(req, res, next){
+	res.render('impulse', { title: 'Impulse Game Engine' });
+});
+
 /* Post routes */
 // route for uploading files.
 router.post('/upload', function(req, res) {
