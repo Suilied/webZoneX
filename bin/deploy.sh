@@ -5,8 +5,8 @@ DIR="/home/azmo/projects/webZoneX"
 systemctl stop webZoneX
 
 # Update & Pull from the repository
-git remote update
-git remote pull
+git update
+git pull
 
 # npm install the node_modules
 npm install
