@@ -12,7 +12,7 @@ let server = http.createServer( (req, res) => {
         });
 
         req.on('end', () => {
-            let stdout = execSync('bash ./bin/deploy.sh', { timeout: 120000, encoding: "string" });
+            let stdout = execSync('bash ./bin/deploy.sh', { timeout: 120000, encoding: "utf-8" });
             console.log('FullBody:', body);
             console.log('Script output:', stdout);
 
