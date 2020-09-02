@@ -22,6 +22,7 @@ let server = http.createServer( (req, res) => {
             const stdout = execSync('bash ./bin/deploy.sh');
 
             // Don't forget to give some feedback for the Post!
+            // And test out some more stuff
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.end('POST Received: '+stdout);
         });
