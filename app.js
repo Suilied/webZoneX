@@ -13,6 +13,7 @@ const app = express();
 
 // Four times the charm
 // But five times is alright
+// and six is worth a fix!
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
