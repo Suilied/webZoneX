@@ -21,6 +21,7 @@ let server = http.createServer( (req, res) => {
             // TODO: Run script under ./bin/deploy.sh
             const stdout = execSync('bash ./bin/deploy.sh');
 
+            // Don't forget to give some feedback for the Post!
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.end('POST Received: '+stdout);
         });
