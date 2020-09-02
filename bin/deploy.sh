@@ -4,13 +4,12 @@ DIR="/home/azmo/projects/webZoneX"
 # Shut down the npm / node process
 systemctl stop webZoneX
 
-# Update & Pull from the repository
-git update
+# Fetch & Pull from the repository
+git fetch
 git pull
 
 # npm install the node_modules
 npm install
 
 # spin up the server again
-#npm start
 systemctl start webZoneX
