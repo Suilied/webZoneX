@@ -18,6 +18,10 @@ router.get('/impulse', function(req, res, next){
 	res.render('impulse', { title: 'Impulse Game Engine' });
 });
 
+router.get('/bazbattalion', function(req, res, next){
+	res.render('bazbattalion', { title: 'Baz Battalion' });
+});
+
 /* Post routes */
 // route for uploading files.
 router.post('/upload', function(req, res) {
