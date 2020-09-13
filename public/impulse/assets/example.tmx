@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="10" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="4">
+ <editorsettings>
+  <export target="example.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="background" tilewidth="32" tileheight="32" tilecount="1504" columns="32">
+  <image source="level/background.png" width="1024" height="1504"/>
+ </tileset>
+ <layer id="1" name="background" width="10" height="8" locked="1">
+  <data encoding="csv">
+297,297,297,297,285,285,285,285,285,285,
+297,297,297,297,297,285,285,285,285,285,
+297,297,297,297,297,297,285,285,285,285,
+297,297,297,297,297,297,285,285,285,285,
+285,285,285,297,297,285,285,285,285,285,
+285,285,285,285,285,285,285,285,285,285,
+285,285,285,285,285,285,285,285,285,285,
+285,285,285,285,285,285,285,285,285,285
+</data>
+ </layer>
+ <layer id="2" name="blocked" width="10" height="8">
+  <data encoding="csv">
+0,0,0,0,1466,1466,0,0,0,0,
+0,0,0,0,1466,1466,0,0,0,0,
+0,0,0,0,1466,1466,0,0,0,0,
+0,0,0,0,1434,1434,0,0,0,0,
+0,0,0,0,1436,1436,0,0,0,0,
+0,0,0,0,1466,1466,0,0,0,0,
+0,0,0,0,1466,1466,0,0,0,0,
+0,0,0,0,1466,1466,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="4" name="Object Layer 1">
+  <object id="2" gid="86" x="47" y="81.5" width="32" height="32">
+   <properties>
+    <property name="name" value="chest"/>
+   </properties>
+  </object>
+  <object id="3" gid="86" x="276" y="167.5" width="32" height="32"/>
+ </objectgroup>
+</map>

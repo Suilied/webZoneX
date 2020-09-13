@@ -9,12 +9,14 @@ class GameScene extends Phaser.Scene {
     }
 
     create(){
+        this.createMap();
         this.createAudio();
         this.createChests();
-        this.createWalls();
         this.createPlayer();
         this.addCollisions();
         this.createInput();
+
+        this.createGameManager();
     }
 
     update(){
@@ -26,7 +28,7 @@ class GameScene extends Phaser.Scene {
     }
 
     createPlayer(){
-        this.player = new Player(this, 32, 32, 'characters', 0);
+        this.player = new Player(this, 224, 224, 'characters', 0);
     }
 
     createChests() {
@@ -53,18 +55,17 @@ class GameScene extends Phaser.Scene {
         }
     }
 
-    createWalls() {
-        this.wall = this.physics.add.image(500, 100, 'button1');
-        this.wall.setImmovable();
-    }
-
     createInput(){
         this.cursors = this.input.keyboard.createCursorKeys();
     }
 
     addCollisions(){
-        this.physics.add.collider(this.player, this.wall);
+        this.physics.add.collider(this.player, this.map.blockedLayer);
         this.physics.add.overlap(this.player, this.chests, this.collectChest, null, this);
+    }
+
+    createMap(){
+        this.map = new Map(this, 'map', 'background', 'background', 'blocked');
     }
 
     collectChest(player, chest){
@@ -73,5 +74,10 @@ class GameScene extends Phaser.Scene {
         this.events.emit('updateScore', this.score);
         chest.makeInactive();
         this.time.delayedCall(1000, this.spawnChest, [], this);
+    }
+
+    createGameManager(){
+        this.gameManager = new GameManager(this, this.map.map.objects);
+        this.gameManager.setup();
     }
 }
