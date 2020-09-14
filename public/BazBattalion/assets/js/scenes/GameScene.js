@@ -10,7 +10,6 @@ class GameScene extends Phaser.Scene {
 
     create(){
         this.createAudio();
-        //this.createChests();
         this.createWalls();
         this.createPlayer();
         this.addCollisions();
@@ -18,7 +17,8 @@ class GameScene extends Phaser.Scene {
     }
 
     update(){
-        this.player.update(this.cursors);
+        //this.regiment.update(this.cursors);
+        this.player.update();
     }
 
     createAudio(){
@@ -26,8 +26,8 @@ class GameScene extends Phaser.Scene {
     }
 
     createPlayer(){
-        //this.player = new Player(this, 32, 32, 'characters', 0);
-        this.player = new Regiment(this, 32, 32, 'nato', 0);
+        this.player = new Player(this);
+        this.player.create();
     }
 
     createTouchHandler(){
@@ -66,20 +66,22 @@ class GameScene extends Phaser.Scene {
     createInput(){
         this.cursors = this.input.keyboard.createCursorKeys();
         this.touch = this.input.on('pointerdown', () => {
-
+            this.player.handleInput(this.touch);
         });
     }
 
     addCollisions(){
-        this.physics.add.collider(this.player, this.wall);
-        this.physics.add.overlap(this.player, this.chests, this.collectChest, null, this);
+        // Left as an example
+        //this.physics.add.collider(this.regiment, this.wall);
+        //this.physics.add.overlap(this.regiment, this.chests, this.collectChest, null, this);
     }
 
-    collectChest(player, chest){
-        this.goldPickupAudio.play();
-        this.score += chest.coins;
-        this.events.emit('updateScore', this.score);
-        chest.makeInactive();
-        this.time.delayedCall(1000, this.spawnChest, [], this);
-    }
+    // Left as an example
+    // collectChest(player, chest){
+    //     this.goldPickupAudio.play();
+    //     this.score += chest.coins;
+    //     this.events.emit('updateScore', this.score);
+    //     chest.makeInactive();
+    //     this.time.delayedCall(1000, this.spawnChest, [], this);
+    // }
 }

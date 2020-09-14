@@ -6,7 +6,7 @@ class BootScene extends Phaser.Scene {
     preload() {
         this.loadImages();
         this.loadSpriteSheets();
-        this.loadAudio();
+        //this.loadAudio();
     }
 
     loadImages() {
@@ -21,7 +21,8 @@ class BootScene extends Phaser.Scene {
     }
 
     loadAudio(){
-        this.load.audio('goldSound', ['assets/audio/Pickup.wav']);
+        // left as an example
+        //this.load.audio('goldSound', ['assets/audio/Pickup.wav']);
     }
 
     create() {

@@ -7,6 +7,11 @@ class Regiment extends Phaser.Physics.Arcade.Image {
 
         this.scene = scene;
         this.maxVelocity = 100;
+        this.moveCommand = {
+            position: [0,0],
+            active: false
+        };
+        this.selected = false;
     
         this.scene.physics.world.enable(this);
     
@@ -21,9 +26,14 @@ class Regiment extends Phaser.Physics.Arcade.Image {
         console.log("Clicked the thing!");
     }
 
-    update(cursors) {
-        this.body.setVelocity(0);
+    setMoveCommand(x, y) {
+        this.moveCommand = {
+            position: [x, y],
+            active: true
+        };
+    }
 
+    update() {
         // TODO:
         // in stead of "cursors" supply mouse input thingy
         //InputPlugin.pointer1
