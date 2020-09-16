@@ -5,7 +5,7 @@ class Player {
     }
 
     create(){
-        this.units.push(new Regiment(this.scene, 32, 32, 'nato', 0));
+        this.units.push(new Regiment(this.scene, 250, 250, 'nato', 0));
     }
 
     update() {
@@ -18,12 +18,10 @@ class Player {
     handleInput(input){
         // check if touch event is inside one of our units' hitboxes
         this.units.forEach( (unit) => {
-
             // TODO: early out after fulfilling either click or moveOrder
             if( Phaser.Geom.Rectangle.ContainsPoint( unit.getBounds(), {x: input.activePointer.downX, y: input.activePointer.downY} ) ) {
-                console.log("You clicked in the wrong neighbourhood fellow!");
                 // select unit if not already selected
-                unit.selected = true;
+                unit.setSelected();
             }
             else {
                 if( unit.selected === true )
