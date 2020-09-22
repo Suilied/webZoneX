@@ -1,6 +1,6 @@
-class Regiment extends Phaser.Physics.Arcade.Image {
-    constructor(scene, x, y, key, frame){
-        super(scene, x, y, key, frame);
+class Regiment extends Phaser.Physics.Matter.Image {
+    constructor(world, x, y, key){
+        super(world, x, y, key);
 
         this.x = x;
         this.y = y;
@@ -26,7 +26,6 @@ class Regiment extends Phaser.Physics.Arcade.Image {
 
         this.scene.add.existing(this);
         this.scene.add.existing(this.selectBox);
-        //this.scene.add.rectangle(30, 30, 10, 10, "0xff0000", 0.5);
     }
 
     onClickBehavior() {
@@ -44,12 +43,21 @@ class Regiment extends Phaser.Physics.Arcade.Image {
             position: [x, y],
             active: true
         };
+
+        // directionVec = goalVec - startVec
+        let goalVec = new Phaser.Math.Vector2(x, y);
+        let startVec = new Phaser.Math.Vector2(this.x, this.y);
+        let dirVec = goalVec.subtract(startVec).setLength(100);
+
+        //this.setAcceleration(dirVec);
+        this.setVelocity(dirVec.x, dirVec.y);
     }
 
     update() {
-        // TODO:
-        // in stead of "cursors" supply mouse input thingy
-        //InputPlugin.pointer1
-        // if mouse thingy then move towards new goal.
+        // if( this.moveCommand.active ){
+        //     // lerp towards goal
+
+        // }
+        //console.log(`Position: ${this.x} ; ${this.y}`);
     }
 }

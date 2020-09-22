@@ -9,11 +9,12 @@ let config = {
         UiScene,
     ],
     physics: {
-        default: 'arcade',
-        arcade: {
+        default: 'matter',
+        matter: {
             debug: true,
             gravity: {
-                y: 0,
+                x: 0,
+                y: 0
             }
         }
     },

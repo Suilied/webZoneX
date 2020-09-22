@@ -1,5 +1,5 @@
 class Player {
-    constructor(scene){
+    constructor(scene) {
         this.scene = scene;
         this.units = [];
     }
