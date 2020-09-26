@@ -20,6 +20,10 @@ class GameScene extends Phaser.Scene {
 
         this.input.on('pointerdown', (pointer) => {
             //if(pointer)
+            if(pointer.button === 0){
+                this.gameManager.handleSelection(pointer);
+            }
+
             if(pointer.button === 2){
                 this.gameManager.handleMoveOrder(pointer);
             }

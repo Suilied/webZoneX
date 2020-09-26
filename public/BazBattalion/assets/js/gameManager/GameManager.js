@@ -9,12 +9,27 @@ class GameManager {
 
     setup() {
         // setup units
-        this.addUnit();
+        this.addUnit(250, 100, 0);
+        this.addUnit(550, 100, 0);
+        this.addUnit(250, 500, 180);
     }
 
-    addUnit() {
-        let newUnit = new Unit(this.scene, this.matter, 250, 250, "nato");
+    addUnit(x, y, a) {
+        let newUnit = new Unit(this.scene, this.matter, "nato", x, y, a);
         this.units.push(newUnit);
+    }
+
+    handleSelection(pointer) {
+        let mouseOverUnit = this.units.find( (unit) => {
+            return unit.image.getBounds().contains(pointer.x, pointer.y);
+        });
+
+        if( mouseOverUnit )
+            mouseOverUnit.setSelected();
+        else
+            this.units.forEach( unit => {
+                unit.unsetSelected();
+            });
     }
 
     handleMoveOrder(pointer) {
@@ -27,6 +42,6 @@ class GameManager {
     update(){
         this.units.forEach( unit => {
             unit.update();
-        })
+        });
     }
 }
