@@ -27,8 +27,8 @@ class GameScene extends Phaser.Scene {
     }
 
     update(){
-        // if(this.gameManager)
-        //     this.gameManager.update();
+        if(this.gameManager)
+            this.gameManager.update();
     }
 
     createGameManager(){

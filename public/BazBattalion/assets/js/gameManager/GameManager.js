@@ -25,6 +25,8 @@ class GameManager {
     }
 
     update(){
-
+        this.units.forEach( unit => {
+            unit.update();
+        })
     }
 }

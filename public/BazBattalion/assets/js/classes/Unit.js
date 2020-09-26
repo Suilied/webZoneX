@@ -6,7 +6,16 @@ class Unit {
         this.startY = y;
         this.key = key;
 
+        this.moveSpeed = 50;
+        this.moveRatio = 0; // 0 == 100% march | 1 == 100% wheel
+        // this.turnSpeed = 0.05; <- turning and moveing speed together are 100% of max-speed, e.g. divide speed between turning and moving
+        this.facingVec = new Phaser.Math.Vector2(0,-1);
+        this.rightVec = this.getRightVec(this.facingVec);
+
         this.image = matter.add.image(x, y, key);
+        this.image.setDensity(10);
+        this.image.body.frictionAir = 0.1;
+
         this.image.setInteractive();
         this.image.on('pointerdown', (pointer) => {
             this.setSelected();
@@ -14,12 +23,17 @@ class Unit {
 
         // setup interactive values
         this.moveCommand = {
-            position: [0,0],
+            goalPosition: {},
+            moveDirection: {},
             active: false
         };
 
         this.selected = false;
     }
+
+    getLinearSpeed(){ return (1-this.moveRatio)*this.moveSpeed; }
+    getWheelSpeed(){ return (this.moveRatio)*this.moveSpeed; }
+    getRightVec(vec){ return new Phaser.Math.Vector2(vec.y, vec.x*-1);}
 
     setSelected(){
         this.selected = !this.selected;
@@ -30,15 +44,44 @@ class Unit {
     }
 
     setMoveCommand(x, y) {
+        // direction-to-goal-vec == goal-position-vec MINUS current-position-vec
+        let goalPosition = new Phaser.Math.Vector2(x, y);
+        let startPosition = new Phaser.Math.Vector2(this.image.body.position.x, this.image.body.position.y);
+        let positionToGoalVec = goalPosition.clone().subtract(startPosition).setLength(50);
+        let positionToGoalVecNorm = goalPosition.clone().subtract(startPosition).normalize();
+
         this.moveCommand = {
-            position: [x, y],
+            goalPosition: goalPosition,
+            moveDirection: positionToGoalVec,
+            moveDirectionNormal: positionToGoalVecNorm,
             active: true
         };
+    }
 
-        // direction-to-goal-vec == goal-position-vec MINUS current-position-vec
-        let goalVec = new Phaser.Math.Vector2(x, y);
-        let startVec = new Phaser.Math.Vector2(this.image.x, this.image.y);
-        let dirVec = goalVec.subtract(startVec).setLength(10);
-        this.image.setVelocity(dirVec.x, dirVec.y);
+    update(){
+        //this.image
+
+        if( this.moveCommand.active ){
+            this.image.applyForce(this.moveCommand.moveDirection);
+
+            // see which way we should rotate.
+            console.log();
+        }
+
+        // determining rotation
+        // dot the facingVec with the destinationVec
+        // if result < 0 the destination lies behind us
+        // if 
+
+        // if( this.moveCommand.active ){
+        //     let position = new Phaser.Math.Vector2(this.image.x, this.image.y);
+        //     if( this.moveCommand.goalPosition.subtract(position).lengthSq() <= 100){
+        //         console.log("Reached the goal!");
+        //         this.moveCommand.active = false;
+        //     }
+        //     else {
+        //         this.image.applyForce(this.moveCommand.moveDirection.x, this.moveCommand.moveDirection.y);
+        //     }
+        // }
     }
 }
