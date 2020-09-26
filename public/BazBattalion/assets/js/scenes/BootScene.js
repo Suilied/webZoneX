@@ -11,7 +11,7 @@ class BootScene extends Phaser.Scene {
     }
 
     loadImages() {
-        this.load.image('nato', 'assets/images/nato-simple.png');
+        this.load.image('nato', 'BazBattalion/assets/images/nato-simple.png');
     }
 
     loadSpriteSheets() {
